@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111116">
+<meta name="description" content="DK THURA Game Shop - Game top-up order demo">
+<link rel="manifest" href="manifest.webmanifest">
+<title>DK THURA Game Shop</title>
+<style>
+:root{--bg:#101116;--panel:#1b1c24;--panel2:#252631;--gold:#e8c46e;--muted:#aeb0bb;--line:#383b48}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f8f8fa;font-family:system-ui,-apple-system,"Noto Sans Myanmar",sans-serif}
+main{max-width:560px;margin:auto;padding:18px 15px 90px}header{display:flex;justify-content:space-between;align-items:center;margin:8px 0 20px}
+.brand{font-weight:900;letter-spacing:1px;color:var(--gold);font-size:23px}.sub{font-size:10px;color:var(--muted);letter-spacing:2px}
+.status{border:1px solid #416d53;color:#8be0a8;border-radius:30px;padding:6px 10px;font-size:11px}
+.hero{background:linear-gradient(135deg,#302a35,#191b25 65%,#3a2e1b);border:1px solid #5b4a2b;border-radius:20px;padding:22px;margin-bottom:22px}
+.hero small{color:var(--gold);letter-spacing:1.5px}.hero h1{font-size:25px;line-height:1.35;margin:9px 0}.hero p,.muted{color:var(--muted);font-size:12px}
+h2{font-size:16px;margin:22px 0 12px}.games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;text-align:left;color:white;cursor:pointer}
+.game .ico{font-size:28px}.game strong{display:block;margin-top:8px}.game span{color:var(--muted);font-size:11px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px}
+label{display:block;color:#d8d9df;font-size:12px;margin:12px 0 6px}
+input,select{width:100%;background:#11131a;color:white;border:1px solid #414552;border-radius:10px;padding:12px;font:inherit;font-size:14px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mode{background:var(--panel2);border:1px solid var(--line);padding:12px;border-radius:12px;font-size:12px}
+.mode b{display:block;margin-bottom:4px}.muted{font-size:11px}
+button.primary{width:100%;border:0;border-radius:12px;padding:14px;background:linear-gradient(90deg,#d5ad56,#f1d58e);color:#17130b;font-weight:800;font-size:14px;margin-top:16px;cursor:pointer}
+.note{font-size:11px;line-height:1.7;color:var(--muted);margin-top:14px}#msg{font-size:12px;color:#9ee2b0;margin-top:10px;min-height:18px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#171820;border-top:1px solid var(--line);display:flex;justify-content:center;gap:34px;padding:13px;font-size:11px;color:var(--muted)}
+nav b{color:var(--gold)}
+</style>
+</head>
+<body>
+<main>
+<header><div><div class="brand">DK THURA</div><div class="sub">PREMIUM GAME SHOP</div></div><div class="status">● DEMO</div></header>
+<section class="hero"><small>WELCOME TO OUR SHOP</small><h1>Game Top-up<br>Center</h1><p>Fast • Secure • Trusted<br>MLBB Diamonds & PUBG UC</p></section>
+<h2>🎮 ဂိမ်းရွေးချယ်ပါ</h2>
+<section class="games">
+<button class="game" onclick="chooseGame('Mobile Legends')"><div class="ico">💎</div><strong>Mobile Legends</strong><span>Diamond / Weekly Pass</span></button>
+<button class="game" onclick="chooseGame('PUBG Mobile')"><div class="ico">🪖</div><strong>PUBG Mobile</strong><span>UC / Packs</span></button>
+</section>
+<section class="card">
+<h2 style="margin-top:0">🛒 Order အချက်အလက်</h2>
+<label>Game</label><select id="game"><option>Mobile Legends</option><option>PUBG Mobile</option></select>
+<label>Package</label><select id="pack"><option>86 Diamonds</option><option>172 Diamonds</option><option>257 Diamonds</option><option>Weekly Pass</option><option>60 UC</option><option>325 UC</option><option>660 UC</option></select>
+<label>Game ID</label><input id="gid" inputmode="numeric" placeholder="Game ID">
+<label>Server ID (လိုအပ်ပါက)</label><input id="sid" inputmode="numeric" placeholder="Server ID">
+<label>ဆက်သွယ်ရန် Telegram Username</label><input id="contact" placeholder="@username">
+<label>Order ဖြည့်သွင်းမည့်နည်းလမ်း</label>
+<div class="modes"><div class="mode"><b>👤 Manual</b><span class="muted">Admin က စစ်ဆေးပြီး ကိုယ်တိုင်ဖြည့်ပေးမည်</span></div><div class="mode"><b>⚡ Auto</b><span class="muted">တရားဝင် Top-up API ချိတ်ဆက်ပြီးမှ ဖွင့်မည်</span></div></div>
+<button class="primary" onclick="previewOrder()">ORDER အချက်အလက် စစ်ဆေးရန်</button><div id="msg"></div>
+<p class="note">ဤအဆင့်သည် UI/PWA Demo သာဖြစ်ပြီး Order ကို Server သို့ မပို့သေးပါ။ နောက်အဆင့်တွင် Firebase Backend၊ Admin Login၊ Payment စစ်ဆေးမှုနှင့် Order Database ချိတ်ဆက်မည်။ ငွေလွှဲ PIN၊ Password သို့မဟုတ် OTP ကို App ထဲ မထည့်ပါနှင့်။</p>
+</section>
+</main>
+<nav><b>⌂ Home</b><span>Orders</span><span>History</span><span>Profile</span></nav>
+<script>
+function chooseGame(name){document.getElementById('game').value=name;document.querySelector('.card').scrollIntoView({behavior:'smooth'});}
+function previewOrder(){
+ const game=document.getElementById('game').value,pack=document.getElementById('pack').value;
+ const gid=document.getElementById('gid').value.trim(),contact=document.getElementById('contact').value.trim();
+ const msg=document.getElementById('msg');
+ if(!gid||!contact){msg.textContent='Game ID နဲ့ Telegram Username ဖြည့်ပါ။';return;}
+ msg.textContent='Demo စစ်ဆေးမှုအောင်မြင်ပါပြီ — '+game+' / '+pack+'။ Backend ချိတ်ပြီးမှ Order အမှန်တကယ်တင်နိုင်ပါမည်။';
+}
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
+</script>
+</body></html>
